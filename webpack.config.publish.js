@@ -5,9 +5,9 @@ var webpack = require('webpack')
 var path = require('path')
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var extractCSS = new ExtractTextPlugin('css/[name].css')
+var extractCSS = new ExtractTextPlugin('css/all.[chunkhash:8].css')
 
-var buildPath = path.resolve(__dirname, 'build')
+var buildPath = path.resolve(__dirname, 'publish')
 
 var config = {
     devtool: false,
@@ -26,8 +26,9 @@ var config = {
                 test: /\.(less|css)$/,
                 loader: ExtractTextPlugin.extract('style', 'css!less')
             },
+            //图片文件使用 url-loader 来处理，小于8kb的直接转为base64
             {
-                test: /\.(png|jpeg)$/,
+                test: /\.(png|jpg)$/,
                 loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]'
             },
             {
@@ -35,9 +36,8 @@ var config = {
                 exclude: /(node_modules | bower_components)/,
                 loader: 'babel',
                 query: {
-                    preset: ['react', 'es2015']
+                    presets: ['react', 'es2015']
                 }
-
             }
         ]
     },

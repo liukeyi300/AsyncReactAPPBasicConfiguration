@@ -1,3 +1,2 @@
-# A Dashboard-Page of SaleOrder
+# Basic Settings for an Async-React APP
 
-Build for showing current selected sale-order on tv.
