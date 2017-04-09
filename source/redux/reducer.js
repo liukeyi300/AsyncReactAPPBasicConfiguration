@@ -3,7 +3,15 @@
  */
 import { REQUEST_POST, RECEIVE_POST, ERROR_POST } from './action'
 
-const initState = {}
+const initState = {
+    suggestion: [{
+        name: 'C',
+        year: '1972',
+    }, {
+        name: 'Elm',
+        year: '2012',
+    }],
+};
 
 function AsyncAPP(state = initState, action) {
     switch (action.type) {
@@ -15,6 +23,8 @@ function AsyncAPP(state = initState, action) {
             console.log(action.data)
             return state
     }
+
+    return state
 }
 
 export default AsyncAPP
